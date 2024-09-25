@@ -4,6 +4,7 @@
 // FILE* fopen(const char *file_name, const char *access_mode);
 #include <stdio.h>
 #include <string.h>
+#include machine.c
 
 int main(int argc, char *argv[]) {
 
