@@ -11,6 +11,7 @@ int main(int argc, char *argv[]) {
     int pFlag = 0;
     const char *filename = NULL;
     unsigned char *memory = NULL;
+    long fileSize;
 
     for(int i = 1; i < argc; i++) {
         //printf("%s\n", argv[i]);
@@ -26,11 +27,12 @@ int main(int argc, char *argv[]) {
     printf("flag is %d\n", pFlag);
 
     //load information
-    unsigned char* VM_Info = read_file(fileName, &memory);
+    unsigned char* VM_Info = read_file(fileName, &memory, &fileSize);
 
     //if pFlag is true print out the instruction. (Result would ble vm_test.lst for example)
     if(pFlag == 1) {
-    
+
+        print_file(VM_Info, &memory, &fileSize);
 
     }
 
