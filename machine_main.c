@@ -25,7 +25,7 @@ int main(int argc, char *argv[]) {
     printf("flag is %d\n", pFlag);
 
     //load information
-    read_file(const char *fileName)
+    read_file(fileName)
 
     //if pFlag is true print out the instruction. (Result would ble vm_test.lst for example)
     if(pFlag == 1) {
