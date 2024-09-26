@@ -15,7 +15,7 @@ VMReg reg;
 #define MEMORY_SIZE_IN_WORDS 32768
 
 //Reads the binary object file
-unsigned char* read_file(const char *fileName, long *fileSize) {
+unsigned char* read_file(const char *fileName) {
 
     // opens the binary object file
     FILE *file = fopen(fileName, "rb");
@@ -84,21 +84,3 @@ unsigned char* read_file(const char *fileName, long *fileSize) {
     return buffer;
 
 }
-
-
-
-    
-
-
-
-/*
- *
- *
- *
- *
- *
- *
- *
- *
- *
- */
