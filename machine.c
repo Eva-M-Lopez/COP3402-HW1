@@ -85,3 +85,28 @@ unsigned char* read_file(const char *fileName, unsigned char **memory, long *fil
 
 }
 
+void print_file(const char *buffer, unsigned char **memory, long *fileSize){
+    printf("Address\tInstruction\n");
+    
+    unsigned int text_length = *(unsigned int*)(buffer);
+    //read first 4 bytes - text length
+    unsigned int text_start_adress = 12;
+    //get the start of the text section
+    for(int i=0;i<text_length;i++){
+        unsigned int address = i + text_start_address;
+        unsigned int instruction = buffer[address];
+
+        // Convert instruction to assembly format (placeholder logic)
+        char *assembly_instruction;
+        switch (instruction) {
+            case 0: assembly_instruction = "STRA"; break;
+            case 1: assembly_instruction = "ADDI $sp, -1, 2"; break;
+            case 2: assembly_instruction = "EXIT 0"; break;
+            default: assembly_instruction = "UNKNOWN"; break;
+        }
+
+        printf("%u: %s\n", address, assembly_instruction);
+    }
+        
+}
+
