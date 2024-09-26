@@ -15,7 +15,7 @@ VMReg reg;
 #define MEMORY_SIZE_IN_WORDS 32768
 
 //Reads the binary object file
-unsigned char* read_file(const char *fileName) {
+unsigned char* read_file(const char *fileName, unsigned char **memory, long *fileSize) {
 
     // opens the binary object file
     FILE *file = fopen(fileName, "rb");
@@ -69,13 +69,13 @@ unsigned char* read_file(const char *fileName) {
 
     //get the text section of the bof file
     for(int i =0;i<text_length;i++){
-        memory[i]= buffer[i+text_start_adress];
+        (*memory)[i]= buffer[i+text_start_adress];
     }
     //get the data section of the bof file
     unsigned int data_section_size = *fileSize - text_start_adress-text_length;
     //get where the data starts
     for(int i =0;i<data_section_size;i++){
-        memory[data_start_adress+i]= buffer[text_start_adress+text_length+i];
+        (*memory)[data_start_adress+i]= buffer[text_start_adress+text_length+i];
     }
 
 
@@ -84,3 +84,4 @@ unsigned char* read_file(const char *fileName) {
     return buffer;
 
 }
+
