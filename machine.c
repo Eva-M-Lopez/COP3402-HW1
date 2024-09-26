@@ -54,16 +54,28 @@ unsigned char* read_file(const char *fileName, long *fileSize) {
     //read from 4-7
     unsigned int stack_bottom_address = *(unsigned int*)(buffer + 8);
     //read from 8-11
-
+    unsigned int text_start_adress = 12;
+    //get the start of the text section
+    
     //initialize the registers
     reg.PC = 0;
     reg.gp = data_start_address;
     reg.fp =stack_bottom_address;
     reg.sp = text_start_address;
+    
+
+    //create the memory
+    unsigned char *memory = (unsigned char *)malloc(MEMORY_SIZE_IN_WORDS * sizeof(unsigned char));
 
     //get the text section of the bof file
-    for(int i =0;I<text_length;i++){
-        
+    for(int i =0;i<text_length;i++){
+        memory[i]= buffer[i+text_start_adress];
+    }
+    //get the data section of the bof file
+    unsigned int data_section_size = *fileSize - text_start_adress-text_length;
+    //get where the data starts
+    for(int i =0;i<data_section_size;i++){
+        memory[data_start_adress+i]= buffer[text_start_adress+text_length+i];
     }
 
 
